@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Buku {
@@ -23,7 +26,7 @@ public class Buku {
         }
     }
 
-    public int jmlKataSyn(){
+    public int jmlKataSyn() {
         return this.synopsis.split("\\s+").length;
     }
 
@@ -38,8 +41,8 @@ public class Buku {
         String syn1 = input.nextLine();
         String syn2 = input.nextLine();
 
-        Buku bk1 = new Buku(jdl1,pnls1,syn1);
-        Buku bk2 = new Buku(jdl2,pnls2,syn2);
+        Buku bk1 = new Buku(jdl1, pnls1, syn1);
+        Buku bk2 = new Buku(jdl2, pnls2, syn2);
 
         int count = 0;
         if (bk1.judulBuku.equalsIgnoreCase(bk2.judulBuku))
@@ -55,6 +58,45 @@ public class Buku {
 
     public Buku copy() {
         return new Buku(this.judulBuku, this.penulis, this.synopsis);
+    }
+
+    public void bacaFile(String pathFile) {
+        try {
+            File buku = new File(pathFile);
+            Scanner sc = new Scanner(buku);
+
+            if (sc.hasNextLine()) {
+                String data = sc.nextLine();
+
+                String[] atribut = data.split("\n");
+
+                this.judulBuku = atribut[0];
+                this.penulis = atribut[1];
+                this.synopsis = atribut[2];
+            }
+
+            sc.close();
+        } catch (IOException e) {
+            System.out.println("File tak ditemukan");
+        }
+    }
+
+    public void simpanFile(String namaFile) {
+        try {
+            System.out.print("Masukkan Judul Buku : ");
+            this.judulBuku = input.nextLine();
+            System.out.print("Masukkan Penulis Buku : ");
+            this.penulis = input.nextLine();
+            System.out.print("Masukkan Sinopsis Buku : ");
+            this.synopsis = input.nextLine();
+
+            FileWriter fileBaru = new FileWriter(namaFile);
+            fileBaru.write(this.judulBuku + "\n" + this.penulis + "\n" + this.synopsis);
+            fileBaru.close();
+            System.out.println("File Berhasil Dibuat");
+        } catch (IOException e) {
+            System.out.println("Simpan File Gagal.");
+        }
     }
 
     public void display() {

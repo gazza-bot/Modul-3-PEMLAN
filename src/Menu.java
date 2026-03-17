@@ -4,7 +4,7 @@ public class Menu {
     private final Scanner input = new Scanner(System.in);
     private int n;
     private Category ctg = new Category();
-    private Buku compare = new Buku();
+    private Buku buku = new Buku();
 
     public void displayMenu(){
         System.out.println("Selamat Datang di Perpustakaan Kami\nSilahkan Cek Koleksi Kami");
@@ -12,7 +12,10 @@ public class Menu {
         System.out.println("2. Tampilkan Semua");
         System.out.println("3. Copy Buku");
         System.out.println("4. Cek Kesamaan Buku");
-        System.out.println("5. Keluar");
+        System.out.println("5. Baca File");
+        System.out.println("6. Simpan File");
+        System.out.println("7. Hitung Royalti");
+        System.out.println("8. Keluar");
         System.out.print("Pilihan Anda : ");
         this.n = input.nextInt();
         input.nextLine();
@@ -63,10 +66,22 @@ public class Menu {
             }
             
             case 4 -> {
-                compare.compareBuku();
+                buku.compareBuku();
             }
 
-            case 5 ->{
+            case 5 -> {
+                System.out.print("Masukkan path File yang kamu ingin baca : ");
+                String pathFile = input.nextLine();
+                buku.bacaFile(pathFile);
+            }
+
+            case 6 -> {
+                System.out.print("Masukkan Nama File yang kamu ingin buat : ");
+                String namaFile = input.nextLine();
+                buku.simpanFile(namaFile);
+            }
+
+            case 8 ->{
                 System.out.println("Terima Kasih");
             }
 
