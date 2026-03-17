@@ -64,18 +64,19 @@ public class Buku {
         try {
             File buku = new File(pathFile);
             Scanner sc = new Scanner(buku);
-
             if (sc.hasNextLine()) {
-                String data = sc.nextLine();
-
-                String[] atribut = data.split("\n");
-
-                this.judulBuku = atribut[0];
-                this.penulis = atribut[1];
-                this.synopsis = atribut[2];
+                this.judulBuku = sc.nextLine();
+            }
+            if (sc.hasNextLine()) {
+                this.penulis = sc.nextLine();
+            }
+            if (sc.hasNextLine()) {
+                this.synopsis = sc.nextLine();
             }
 
             sc.close();
+            
+            this.display();
         } catch (IOException e) {
             System.out.println("File tak ditemukan");
         }
@@ -97,6 +98,31 @@ public class Buku {
         } catch (IOException e) {
             System.out.println("Simpan File Gagal.");
         }
+    }
+
+    public void hitungRoyalti(int harga){
+        System.out.print("Berapa Jumlah buku terjual dalam Sebulan : ");
+        int bukuTerjual = input.nextInt();
+        input.nextLine();
+        int jumlah = bukuTerjual * harga;
+        double royalti = (double) jumlah * (10.0 / 100.0);
+        double pemasukan = jumlah - royalti;
+        System.out.println("Jumlah Penjualan : " + jumlah);
+        System.out.println("Royalti 10 % : " + royalti);
+        System.out.println("Jumlah Pemasukan : " + pemasukan);
+    }
+    
+    public void hitungRoyalti(int harga, double persenan){
+        System.out.print("Berapa Jumlah buku yang terjual dalam sebulan : ");
+        int bukuTerjual = input.nextInt();
+        input.nextLine();
+        int jumlah = harga * bukuTerjual;
+        double royalti = (double) jumlah * (persenan / 100);
+        double pemasukan = jumlah - royalti;
+        System.out.println("Jumlah Penjualan : " + jumlah);
+        System.out.println("Royalti 10 % : " + royalti);
+        System.out.println("Jumlah Pemasukan : " + pemasukan);
+
     }
 
     public void display() {

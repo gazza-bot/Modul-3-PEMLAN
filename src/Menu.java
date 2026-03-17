@@ -81,6 +81,25 @@ public class Menu {
                 buku.simpanFile(namaFile);
             }
 
+            case 7 -> {
+                System.out.println("Apakah Anda akan menentukan Royalti anda sendiri ? (Y / T)");
+                String pilihan = input.next();
+                if(pilihan.equalsIgnoreCase("Y")){
+                    System.out.println("Masukkan Harga Buku : ");
+                    int harga = input.nextInt();
+                    input.nextLine();
+                    System.out.println("Masukkan Persenan : ");
+                    double persen = input.nextDouble();
+                    buku.hitungRoyalti(harga, persen);
+                }else if(pilihan.equalsIgnoreCase("T")){
+                    System.out.println("Masukkan Harga Buku : ");
+                    int harga = input.nextInt();
+                    buku.hitungRoyalti(harga);    
+                }else {
+                    this.displayMenu();
+                }
+            }
+
             case 8 ->{
                 System.out.println("Terima Kasih");
             }
