@@ -78,7 +78,7 @@ public class Buku {
             
             this.display();
         } catch (IOException e) {
-            System.out.println("File tak ditemukan");
+            System.out.println("Message : " + e.getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ public class Buku {
             fileBaru.close();
             System.out.println("File Berhasil Dibuat");
         } catch (IOException e) {
-            System.out.println("Simpan File Gagal.");
+            System.out.println("Message Error : " + e.getMessage());
         }
     }
 
